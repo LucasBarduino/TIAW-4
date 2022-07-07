@@ -1,0 +1,292 @@
+body {
+    background-image: linear-gradient(45deg, rgb(146, 180, 236), rgb(255, 255, 255), rgb(255, 230, 154), rgb(255, 210, 76));
+    background-size: 300% 300%;
+    animation: colors 15s ease infinite;
+}
+
+@keyframes colors {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+#container {
+    width: 100%;
+    min-height: 100vh;
+
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#titulo {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    font-size: 9em;
+    letter-spacing: 6px;
+    word-spacing: 6px;
+    color: #699ee392;
+    font-weight: 600;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: uppercase;
+    padding-top: 0%;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 0%;
+    position: relative;
+    bottom: 20px;
+
+
+}
+
+.header {
+    overflow: hidden;
+    background-color: #699ee392;
+    padding: 20px 10px;
+}
+
+/* Style the header links */
+.header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* Change the background color on mouse-over */
+.header a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+
+/* Float the link section to the right */
+.header-right {
+    float: right;
+}
+
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .header-right {
+        float: none;
+    }
+
+}
+
+#logo {
+    width: 50px;
+    cursor: pointer;
+    margin: 30px 0;
+    float: right;
+}
+
+h3 {
+    text-align: center;
+    padding: 1em;
+    position: relative;
+    bottom: 80px;
+    padding-top: 2em;
+}
+
+
+#membros {
+    display: inline;
+    text-align: center;
+
+    padding-bottom: 3em;
+    padding: 1em;
+    bottom: 40px;
+    position: fixed;
+    color: #ffffff;
+    left: 3em;
+    font-size: 30px;
+    position: relative;
+}
+
+#membros li {
+    display: inline;
+    padding-bottom: 3em;
+    padding: 1em;
+    bottom: 40px;
+    position: fixed;
+    color: #ffffff;
+
+    font-size: 30px;
+    position: relative;
+}
+
+.button {
+    background-color: rgb(136, 35, 35);
+    border: none;
+    color: #ffffff;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 26px;
+    position: relative;
+    top: 30px;
+    border-radius: 25px;
+}
+
+
+
+#lang {
+    position: absolute;
+    left: 100px;
+    top: 45px;
+
+}
+
+#teste {
+    position: absolute;
+    left: 300px;
+    top: 45px;
+}
+
+#login {
+    position: absolute;
+    left: 500px;
+    top: 45px;
+}
+
+.header img {
+    width: 100px;
+    top: 15px;
+    left: 1100px;
+    position: absolute;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: #699ee392;
+}
+
+a:hover {
+    color: rgb(0, 0, 0);
+}
+
+
+
+#imagem1 img {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    top: 100px;
+    left: 650px;
+}
+
+#imagem2 img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 300px;
+    left: 50px;
+}
+
+#grp {
+    list-style: circle;
+    position: relative;
+    top: 2em;
+    left: 2em;
+    color: #ffffff;
+    font-size: 30px;
+    position: absolute;
+    top: 9em;
+    border-left: 14px solid rgba(164, 31, 25, 0.88);
+}
+
+
+
+
+#content-wrap {
+    padding-bottom: 7rem;
+
+}
+
+#rede {
+    list-style: none;
+    display: inline;
+    padding-left: 1em;
+    padding-right: 1em;
+
+
+}
+
+h2 {
+    font-size: 100px;
+}
+
+
+
+/*#wrapper {
+    width: 1325px;
+    width: 100%;
+    margin: auto;   
+}*/
+.header h1 {
+    text-align: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 3em;
+}
+
+
+#membross {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    right: 5em;
+    position: relative;
+    justify-content: space-between;
+
+}
+
+#descricao {
+    position: relative;
+    top: 3em;
+    text-align: justify;
+    color: #ffffff;
+    border-left: 14px solid rgba(164, 31, 25, 0.88);
+    padding-left: 2em;
+    margin-top: 2em;
+    margin-right: 5em;
+    margin-left: 5em;
+    font-size: 120%;
+}

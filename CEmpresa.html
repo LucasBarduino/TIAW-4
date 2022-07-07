@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastro de empresa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="init()">
+    <h1><br><br>Informe os dados abaixo para <br>
+        cadastrar a empresa no site</h1>
+
+    <div class="container">
+        <div class="row">
+            <div id="msg" class="col-sm-10 offset-sm-1 ">
+            </div>
+        </div>
+
+        <form id="form-contato">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <label for="inputId">Id</label>
+                    <input type="text" class="form-control" id="inputId" placeholder="ID" disabled>
+                </div>
+                <div class="col-sm-8">
+                    <label for="inputNome">Razão social</label>
+                    <input type="text" class="form-control" id="inputNome" required
+                        placeholder="Informe a razão social da empresa">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-5">
+                    <label for="inputTelefone">Telefone</label>
+                    <input type="text" class="form-control" id="inputTelefone" required
+                        placeholder="Informe o telefone de contato da empresa">
+                </div>
+                <div class="col-sm-7">
+                    <label for="inputEmail">E-mail</label>
+                    <input type="email" class="form-control" id="inputEmail" required
+                        placeholder="Informe o e-mail de contato da empresa">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="inputCidade">CNPJ</label>
+                    <input type="text" class="form-control" id="inputCidade" placeholder="Informe o CNPJ da empresa">
+                </div>
+                <div class="col-sm-6">
+                    <label for="inputSite">Informe o tipo de golpe que sua empresa pode ajudar</label>
+                    <select id="inputCategoria" onchange="ListaContatos()" class="form-control" required
+                        placeholder="Informe do tipo do golpe">
+                        <option value="">Selecione a Categoria</option>
+                        <option value="Nº Telefone">Nº Telefone</option>
+                        <option value="Email">Email</option>
+                        <option value="Site">Site</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <label for="inputSite">Nome da empresa</label>
+                    <input type="text" class="form-control" id="inputSite" required placeholder="Nome real da empresa">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <small>Todos os campos obrigatórios!</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <input type="button" style="background-color: transparent; border-color: black; color: black;"
+                        class="btn btn-success" id="btnInsert" value="Inserir">
+                    <input type="button" style="background-color: transparent; border-color: black; color: black;"
+                        class="btn btn-secondary" id="btnClear" value="Limpar Form">
+                    <a href="LEmpresa.html"><input type="button"
+                            style="background-color: transparent; border-color: black; color: black;"
+                            class="btn btn-warning" id="btnClear" value="Pesquisar empresas cadastradas no site"></a>
+                </div>
+            </div>
+        </form>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="AEmpresa.js"></script>
+        <script>
+            function exibeContatos() {
+
+                $("#table-contatos").html("");
+                for (i = 0; i < db.data.length; i++) {
+                    let contato = db.data[i];
+                    $("#table-contatos").append(`<tr><td scope="row">${contato.id}</td>
+                                                <td>${contato.nome}</td>
+                                                <td>${contato.telefone}</td>
+                                                <td>${contato.email}</td>
+                                                <td>${contato.cidade}</td>
+                                                <td>${contato.categoria}</td>
+                                                <td>${contato.website}</td>
+                                            </tr>`);
+                }
+            }
+
+            function init() {
+                $("#btnInsert").click(function () {
+                    if (!$('#form-contato')[0].checkValidity()) {
+                        displayMessage("Preencha o formulário corretamente.");
+                        return;
+                    }
+                    let campoNome = $("#inputNome").val();
+                    let campoTelefone = $("#inputTelefone").val();
+                    let campoEmail = $('#inputEmail').val();
+                    let campoCidade = $("#inputCidade").val();
+                    let campoCategoria = $('#inputCategoria').val();
+                    let campoSite = $('#inputSite').val();
+                    let contato = {
+                        nome: campoNome,
+                        telefone: campoTelefone,
+                        email: campoEmail,
+                        cidade: campoCidade,
+                        categoria: campoCategoria,
+                        website: campoSite
+                    };
+
+                    insertContato(contato);
+
+                    exibeContatos();
+
+                    $("#form-contato")[0].reset();
+                });
+
+                $("#btnUpdate").click(function () {
+                    let campoId = $("#inputId").val();
+                    if (campoId == "") {
+                        displayMessage("Selecione um contato para ser alterado.");
+                        return;
+                    }
+                    let campoNome = $("#inputNome").val();
+                    let campoTelefone = $("#inputTelefone").val();
+                    let campoEmail = $("#inputEmail").val();
+                    let campoCidade = $("#inputCidade").val();
+                    let campoCategoria = $("#inputCategoria").val();
+                    let campoSite = $('#inputSite').val();
+                    let contato = {
+                        nome: campoNome,
+                        telefone: campoTelefone,
+                        email: campoEmail,
+                        cidade: campoCidade,
+                        categoria: campoCategoria,
+                        website: campoSite
+                    };
+
+                    updateContato(parseInt(campoId), contato);
+
+                    exibeContatos();
+
+                    $("#form-contato")[0].reset();
+                });
+
+                $("#btnDelete").click(function () {
+                    let campoId = $("#inputId").val();
+                    if (campoId == "") {
+                        displayMessage("Selecione um contato a ser excluído.");
+                        return;
+                    }
+                    deleteContato(parseInt(campoId));
+
+                    exibeContatos();
+
+                    $("#form-contato")[0].reset();
+                });
+
+                $("#btnClear").click(function () {
+                    $("#form-contato")[0].reset();
+                });
+
+                $('#msg').bind("DOMSubtreeModified", function () {
+                    window.setTimeout(function () {
+                        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                            $(this).remove();
+                        });
+                    }, 5000);
+                });
+
+                $("#grid-contatos").on("click", "tr", function (e) {
+                    let linhaContato = this;
+                    colunas = linhaContato.querySelectorAll("td");
+
+                    $("#inputId").val(colunas[0].innerText);
+                    $("#inputNome").val(colunas[1].innerText);
+                    $("#inputTelefone").val(colunas[2].innerText);
+                    $("#inputEmail").val(colunas[3].innerText);
+                    $("#inputCidade").val(colunas[4].innerText);
+                    $("#inputCategoria").val(colunas[5].innerText);
+                    $("#inputSite").val(colunas[6].innerText);
+                });
+
+                exibeContatos();
+            }
+        </script>
+</body>
+
+</html>

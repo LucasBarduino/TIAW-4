@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Empresas cadastradas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="SEmpresa.css">
+</head>
+
+<body onload="ListaContatos()">
+    <h1><br><br>Contatos das empresas</h1>
+
+    <div class="container">
+        <div class="row">
+            <div id="msg" class="col-sm-10 offset-sm-1 ">
+            </div>
+        </div>
+
+
+        <form id="form-contato">
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <select name="filtro_categoria" id="filtro_categoria" onchange="ListaContatos()"
+                        class="form-control">
+                        <option value="">Selecione em que área você precisa de ajuda</option>
+                        <option value="Nº Telefone">Golpes por nº de Telefone</option>
+                        <option value="Email">Golpes por email</option>
+                        <option value="Site">Golpes por site</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="grid-contatos" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Razão social</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">CNPJ</th>
+                            <th scope="col">Tipo de ajuda</th>
+                            <th scope="col">Nome</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-contatos">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="AEmpresa.js"></script>
+    <script>
+        function ListaContatos() {
+
+            let fcg = document.getElementById('filtro_categoria').value;
+
+            $("#table-contatos").empty();
+
+            for (let CEmpresa = 0; CEmpresa < db.data.length; CEmpresa++) {
+                const contato = db.data[CEmpresa];
+
+                if (((contato.categoria == fcg) || (fcg == ''))) {
+
+                    $("#table-contatos").html("");
+                    for (i = 0; i < db.data.length; i++) {
+                        let contato = db.data[i];
+                        $("#table-contatos").append(`<tr><td scope="row">${contato.id}</td>
+                                                <td>${contato.nome}</td>
+                                                <td>${contato.telefone}</td>
+                                                <td>${contato.email}</td>
+                                                <td>${contato.cidade}</td>
+                                                <td>${contato.categoria}</td>
+                                                <td>${contato.website}</td>
+                                            </tr>`);
+                    }
+                }
+
+            }
+        }
+    </script>
+
+</body>
+
+</html>
